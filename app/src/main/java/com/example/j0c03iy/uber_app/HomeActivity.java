@@ -1,6 +1,7 @@
 package com.example.j0c03iy.uber_app;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,13 +26,13 @@ public class HomeActivity extends AppCompatActivity {
         driverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: launch driver activity
+                startActivity(new Intent(HomeActivity.this, DriverActivity.class));
             }
         });
         passengerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: launch passenger activity
+                startActivity(new Intent(HomeActivity.this, PassengerActivity.class));
             }
         });
 
