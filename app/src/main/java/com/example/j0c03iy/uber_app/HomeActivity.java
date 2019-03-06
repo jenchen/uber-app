@@ -17,7 +17,7 @@ import com.pubnub.api.PubNub;
 public class HomeActivity extends AppCompatActivity {
     private Button driverButton;
     private Button passengerButton;
-    private PubNub pubNub;
+    public static PubNub pubNub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
