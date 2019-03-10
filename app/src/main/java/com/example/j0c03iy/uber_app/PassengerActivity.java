@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.pubnub.api.PubNub;
 import com.pubnub.api.callbacks.SubscribeCallback;
 import com.pubnub.api.models.consumer.PNStatus;
@@ -104,5 +108,25 @@ public class PassengerActivity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+    private void updateUI(Map<String, String> newLoc) {
+        LatLng newLocation = new LatLng(Double.valueOf(newLoc.get("lat")), Double.valueOf(newLoc.get("lng")));
+        if (driverMarker != null) {
+            animateCar(newLocation);
+            boolean contains = mGoogleMap.getProjection()
+                    .getVisibleRegion()
+                    .latLngBounds
+                    .contains(newLocation);
+            if (!contains) {
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(newLocation));
+            }
+        } else {
+            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                    newLocation, 15.5f));
+            driverMarker = mGoogleMap.addMarker(new MarkerOptions().position(newLocation).
+                    icon(BitmapDescriptorFactory.fromResource(R.drawable.car)));
+        }
+    }
 
+    private void animateCar(LatLng newLocation) {
+    }
 }
