@@ -127,6 +127,9 @@ public class PassengerActivity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    private void animateCar(LatLng newLocation) {
+    private void animateCar(final LatLng destination) {
+        final LatLng startPosition = driverMarker.getPosition();
+        final LatLng endPosition = new LatLng(destination.latitude, destination.longitude);
+//        final LatLngInterpolator latLngInterpolator;
     }
 }
