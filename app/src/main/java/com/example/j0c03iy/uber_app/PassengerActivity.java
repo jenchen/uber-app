@@ -1,8 +1,10 @@
 package com.example.j0c03iy.uber_app;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.LinearInterpolator;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -131,6 +133,9 @@ public class PassengerActivity extends AppCompatActivity implements OnMapReadyCa
         final LatLng startPosition = driverMarker.getPosition();
         final LatLng endPosition = new LatLng(destination.latitude, destination.longitude);
         final LatLngInterpolator latLngInterpolator;
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);
+        valueAnimator.setDuration(5000); // duration 5 seconds
+        valueAnimator.setInterpolator(new LinearInterpolator());
     }
 
     private interface LatLngInterpolator {
